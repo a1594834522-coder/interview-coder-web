@@ -1,5 +1,5 @@
 import { useMemo, useRef } from 'react';
-import { Canvas, extend, useFrame } from '@react-three/fiber';
+import { Canvas, extend, useFrame, useThree } from '@react-three/fiber';
 import { shaderMaterial } from '@react-three/drei';
 import * as THREE from 'three';
 import { gsap, useGSAP } from '@/lib/gsap';
@@ -158,6 +158,7 @@ declare module '@react-three/fiber' {
 
 function ShaderPlane() {
   const materialRef = useRef<CPPNMaterialInstance | null>(null);
+  const { viewport, gl } = useThree();
 
   useFrame((state) => {
     if (!materialRef.current) return;
@@ -165,9 +166,15 @@ function ShaderPlane() {
     materialRef.current.iResolution.set(state.size.width, state.size.height);
   });
 
+  // Calculate plane size to cover entire viewport
+  // Use a larger size to ensure full coverage on all screen sizes
+  const aspect = gl.domElement.width / gl.domElement.height;
+  const planeHeight = viewport.height * 2;
+  const planeWidth = planeHeight * aspect; // Maintain aspect ratio
+
   return (
-    <mesh position={[0, -0.75, -0.5]}>
-      <planeGeometry args={[4, 4]} />
+    <mesh position={[0, 0, -1]}>
+      <planeGeometry args={[planeWidth, planeHeight]} />
       <cPPNShaderMaterial ref={materialRef} side={THREE.DoubleSide} />
     </mesh>
   );
@@ -177,7 +184,7 @@ export function ShaderBackground() {
   const canvasRef = useRef<HTMLDivElement | null>(null);
 
   const camera = useMemo(
-    () => ({ position: [0, 0, 1] as [number, number, number], fov: 75, near: 0.1, far: 1000 }),
+    () => ({ position: [0, 0, 1] as [number, number, number], fov: 60, near: 0.1, far: 1000 }),
     [],
   );
 
