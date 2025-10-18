@@ -24,6 +24,20 @@ export function DownloadSection() {
     { scope: containerRef },
   );
 
+  const handleDownload = (url: string, filename: string) => {
+    // 创建隐藏的 a 标签触发下载
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = filename;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+
+    // 添加到 DOM,点击,然后移除
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <div
       ref={containerRef}
@@ -31,9 +45,9 @@ export function DownloadSection() {
       className="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-4"
     >
       <div className="flex gap-3">
-        <a
-          href="http://47.96.89.141:8888/down/ATubLlZETxxr.exe"
-          className="group flex items-center gap-2 rounded-2xl border border-white/20 bg-white/10 px-6 py-3 text-sm font-light text-white backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:bg-white/20"
+        <button
+          onClick={() => handleDownload('http://47.96.89.141:8888/down/H3NntVlPEqJh.exe', 'InterviewCoder-Setup.exe')}
+          className="group flex items-center gap-2 rounded-2xl border border-white/20 bg-white/10 px-6 py-3 text-sm font-light text-white backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:bg-white/20 hover:cursor-pointer"
         >
           <svg className="h-4 w-4 transition-transform group-hover:scale-110" fill="currentColor" viewBox="0 0 20 20">
             <path
@@ -43,10 +57,10 @@ export function DownloadSection() {
             />
           </svg>
           Windows 版下载
-        </a>
-        <a
-          href="http://47.96.89.141:8888/down/4wuSGyu3Pg3r.dmg"
-          className="group flex items-center gap-2 rounded-2xl border border-white/20 bg-white/10 px-6 py-3 text-sm font-light text-white backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:bg-white/20"
+        </button>
+        <button
+          onClick={() => handleDownload('http://47.96.89.141:8888/down/qmOt7x56nKqq.dmg', 'InterviewCoder.dmg')}
+          className="group flex items-center gap-2 rounded-2xl border border-white/20 bg-white/10 px-6 py-3 text-sm font-light text-white backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:bg-white/20 hover:cursor-pointer"
         >
           <svg className="h-4 w-4 transition-transform group-hover:scale-110" fill="currentColor" viewBox="0 0 20 20">
             <path
@@ -56,7 +70,7 @@ export function DownloadSection() {
             />
           </svg>
           macOS 版下载
-        </a>
+        </button>
       </div>
       <p className="text-xs font-light tracking-tight text-white/60">支持 Windows 10+ 和 macOS 12+ 系统</p>
     </div>

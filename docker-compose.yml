@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  # 生产环境服务 - 使用 Nginx 提供构建后的静态文件
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: interview-coder-web
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+    networks:
+      - interview-coder-network
+
+  # 开发环境服务 - 使用 Vite 开发服务器
+  dev:
+    image: node:20-alpine
+    container_name: interview-coder-web-dev
+    working_dir: /app
+    volumes:
+      - .:/app
+      - /app/node_modules  # 防止本地 node_modules 覆盖容器内的
+    ports:
+      - "5173:5173"
+    environment:
+      - NODE_ENV=development
+    command: sh -c "npm install && npm run dev -- --host 0.0.0.0"
+    networks:
+      - interview-coder-network
+    profiles:
+      - dev  # 仅在指定 dev profile 时启动
+
+networks:
+  interview-coder-network:
+    driver: bridge
