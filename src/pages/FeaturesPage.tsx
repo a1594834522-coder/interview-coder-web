@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ShaderBackground } from '@/components/shader/ShaderBackground';
 
@@ -14,34 +13,6 @@ function SectionCard({ children }: { children: React.ReactNode }) {
   );
 }
 
-function CommandSnippet({ command }: { command: string }) {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(command);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1200);
-    } catch (error) {
-      console.error('复制失败', error);
-    }
-  };
-
-  return (
-    <div className="relative rounded-2xl border border-white/10 bg-black/60 p-4 font-mono text-xs text-white/70">
-      <pre className="whitespace-pre-wrap break-all">{command}</pre>
-      <button
-        type="button"
-        onClick={handleCopy}
-        className="absolute right-4 top-4 rounded-lg border border-white/15 bg-white/10 px-3 py-1 text-[11px] font-medium text-white/80 transition hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/40"
-        aria-label="复制命令"
-      >
-        {copied ? '已复制' : '复制'}
-      </button>
-    </div>
-  );
-}
-
 export default function FeaturesPage() {
   return (
     <div className="relative min-h-screen w-screen overflow-hidden">
@@ -53,10 +24,10 @@ export default function FeaturesPage() {
           <div>
             <p className="text-xs uppercase tracking-[0.4em] text-white/50">overview</p>
             <h1 className="mt-3 text-3xl font-light leading-tight text-white sm:text-4xl md:text-5xl">
-              Interview Coder（开源魔改版）
+              BUZZ
             </h1>
             <p className="mt-4 max-w-3xl text-sm font-light leading-relaxed text-white/70 sm:text-base">
-              面向技术面试的桌面助手，支持截图解析、AI 解题与调试、隐身窗口等能力。应用完全在本地运行，需自行提供模型 API Key，确保私有数据只在你与服务商之间传输。
+              AI 驱动的智能辅助工具，适用于在线考试、日常作业、技术面试、科学研究等多种场景。支持截图解析、AI 解题与调试、隐身窗口等能力。应用完全在本地运行，确保数据隐私安全。
             </p>
           </div>
           <Link
@@ -72,47 +43,51 @@ export default function FeaturesPage() {
             <SectionTitle>功能概览</SectionTitle>
             <SectionCard>
               <ul className="list-disc space-y-3 pl-5">
-                <li>截图队列：使用全局快捷键随时捕获题面或代码，最多保留 5 张，可管理队列或重新截图。</li>
-                <li>AI 解析与作答：自动读取截图，生成题目理解、思考过程与最终回答，支持代码输出与复杂度说明。</li>
-                <li>结果调试：Solutions 页面可一键进入 Debug 模式，将错误截图交给模型给出修复建议与优化方向。</li>
-                <li>窗口隐身：Electron 浮窗默认透明，可调整位置、透明度、尺寸，降低被共享或录制捕捉风险。</li>
-                <li>多模型支持：内置 GPT‑5、Gemini 2.5、Claude 4 等，可按需切换或扩展。（推荐使用 gemini2.5flash）</li>
+                <li>智能截图：使用全局快捷键随时捕获题目、代码或文献，最多保留 5 张，可管理队列或重新截图。</li>
+                <li>AI 解析：自动读取截图内容，生成深度理解、解题思路与最终答案，支持代码输出与复杂度分析。</li>
+                <li>智能调试：Solutions 页面可一键进入 Debug 模式，将错误信息交给 AI 给出修复建议与优化方向。</li>
+                <li>隐身模式：窗口默认透明，可调整位置、透明度、尺寸，适合在线考试、远程面试等场景使用。</li>
+                <li>多模型支持：内置 GPT‑5、Gemini 2.5、Claude 4 等主流 AI 模型，可按需切换。</li>
+                <li>灵活计费：免费版每日 3 次，付费版支持多种套餐，最高每日 100 次配额，满足不同使用强度。</li>
               </ul>
             </SectionCard>
           </section>
 
           <section className="space-y-4">
-            <SectionTitle>运行要求</SectionTitle>
+            <SectionTitle>系统要求</SectionTitle>
             <SectionCard>
               <ul className="list-disc space-y-2 pl-5">
-                <li>Windows 10/11（推荐），macOS 13 及以上可使用相同目录下的启动脚本。</li>
-                <li>Node.js 18 或更新版本。</li>
-                <li>首次运行需执行 <code className="rounded bg-white/10 px-1">npm install</code> 安装依赖。</li>
-                <li>需准备可用的模型 API Key（在应用设置弹窗中粘贴）。</li>
+                <li>Windows 10/11 或 macOS 12 及以上版本</li>
+                <li>下载安装包后直接运行，无需安装其他环境</li>
+                <li>免费版每日 3 次配额，付费用户需购买激活码</li>
+                <li>首次使用建议查看快捷键说明，提高使用效率</li>
               </ul>
             </SectionCard>
           </section>
 
           <section className="space-y-4">
-            <SectionTitle>快速启动（Windows）</SectionTitle>
+            <SectionTitle>快速上手</SectionTitle>
             <SectionCard>
               <ol className="list-decimal space-y-3 pl-5">
                 <li>
-                  安装依赖：
-                  <CommandSnippet command="npm install" />
+                  <span className="font-medium text-white">下载安装：</span>
+                  从官网下载对应系统的安装包，双击运行安装程序
                 </li>
                 <li>
-                  启动隐身版应用：
-                  <CommandSnippet command="stealth-run.bat" />
-                  脚本会自动清理旧构建、重新打包并以隐身模式启动。
+                  <span className="font-medium text-white">启动应用：</span>
+                  安装完成后，应用会以隐身模式自动启动（窗口默认透明）
                 </li>
                 <li>
-                  启动后按 <span className="font-medium text-white">Ctrl + B</span> 显示主窗口，在设置面板中填写 API Key 即可。
+                  <span className="font-medium text-white">显示窗口：</span>
+                  按 <span className="font-medium text-white">Ctrl + B</span> 快捷键显示主窗口
                 </li>
-                <li>推荐使用 gemini2.5flash</li>
                 <li>
-                  克隆仓库：
-                  <CommandSnippet command="git clone https://github.com/a1594834522-coder/interview-coder.git" />
+                  <span className="font-medium text-white">激活账户：</span>
+                  免费版每日有 3 次使用配额，付费用户可在设置中输入激活码
+                </li>
+                <li>
+                  <span className="font-medium text-white">开始使用：</span>
+                  按 <span className="font-medium text-white">Ctrl + H</span> 捕获内容，按 <span className="font-medium text-white">Ctrl + Enter</span> 让 AI 开始解析
                 </li>
               </ol>
             </SectionCard>
@@ -166,14 +141,26 @@ export default function FeaturesPage() {
           </section>
 
           <section className="space-y-4">
-            <SectionTitle>API Key 与配置</SectionTitle>
+            <SectionTitle>激活与设置</SectionTitle>
             <SectionCard>
-              <p className="leading-relaxed text-white/70">API Key 可在设置面板中随时切换模型供应商。配置文件默认路径：</p>
-              <ul className="mt-3 list-disc space-y-2 pl-5">
-                <li>Windows：%APPDATA%\interview-coder-v1\config.json</li>
-                <li>macOS：~/Library/Application Support/interview-coder-v1/config.json</li>
+              <ul className="list-disc space-y-3 pl-5">
+                <li>
+                  <span className="font-medium text-white">激活码激活：</span>
+                  付费用户在设置面板中输入 16 位激活码即可解锁对应套餐
+                </li>
+                <li>
+                  <span className="font-medium text-white">配额查看：</span>
+                  在应用内可随时查看今日剩余使用次数和套餐有效期
+                </li>
+                <li>
+                  <span className="font-medium text-white">设备绑定：</span>
+                  激活码绑定单一设备，需换设备时可在设置中解除绑定
+                </li>
+                <li>
+                  <span className="font-medium text-white">数据存储：</span>
+                  所有使用记录和配置均存储在本地，应用不会上传任何数据
+                </li>
               </ul>
-              <p className="mt-3 leading-relaxed text-white/70">删除该文件可重置登录与模型设定。</p>
             </SectionCard>
           </section>
 
@@ -181,9 +168,26 @@ export default function FeaturesPage() {
             <SectionTitle>常见问题</SectionTitle>
             <SectionCard>
               <ul className="list-disc space-y-3 pl-5">
-                <li>窗口不见了？应用仍在后台运行。按 Ctrl + B 切换可见性，或结束 electron 进程后重新运行脚本。</li>
-                <li>快捷键失效？确认系统已授予屏幕录制或全局快捷键权限；macOS 需在“系统设置 → 隐私与安全性 → 屏幕录制”中勾选终端或 IDE。</li>
-                <li>模型调用失败？请核对 API Key 与额度，可尝试切换其他模型测试。</li>
+                <li>
+                  <span className="font-medium text-white">窗口不见了？</span>
+                  应用仍在后台运行，按 <span className="font-medium text-white">Ctrl + B</span> 即可切换窗口显示/隐藏
+                </li>
+                <li>
+                  <span className="font-medium text-white">快捷键失效？</span>
+                  确认系统已授予屏幕录制和全局快捷键权限。macOS 需在"系统设置 → 隐私与安全性 → 屏幕录制"中勾选 BUZZ
+                </li>
+                <li>
+                  <span className="font-medium text-white">提示配额用尽？</span>
+                  免费版每日 3 次，等待次日 00:00 重置或购买付费套餐
+                </li>
+                <li>
+                  <span className="font-medium text-white">激活码无效？</span>
+                  检查格式是否完整（XXXX-XXXX-XXXX-XXXX），确认网络连接正常，或联系客服核实
+                </li>
+                <li>
+                  <span className="font-medium text-white">如何卸载？</span>
+                  Windows 在控制面板中卸载，macOS 将应用拖入废纸篓即可
+                </li>
               </ul>
             </SectionCard>
           </section>

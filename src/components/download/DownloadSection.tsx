@@ -46,7 +46,7 @@ export function DownloadSection() {
     >
       <div className="flex gap-3">
         <button
-          onClick={() => handleDownload('http://47.96.89.141:8888/down/H3NntVlPEqJh.exe', 'InterviewCoder-Setup.exe')}
+          onClick={() => handleDownload('http://47.96.89.141:8888/down/GsSdHcd8Ak5V.exe', 'BUZZ-Setup.exe')}
           className="group flex items-center gap-2 rounded-2xl border border-white/20 bg-white/10 px-6 py-3 text-sm font-light text-white backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:bg-white/20 hover:cursor-pointer"
         >
           <svg className="h-4 w-4 transition-transform group-hover:scale-110" fill="currentColor" viewBox="0 0 20 20">
@@ -59,7 +59,7 @@ export function DownloadSection() {
           Windows 版下载
         </button>
         <button
-          onClick={() => handleDownload('http://47.96.89.141:8888/down/qmOt7x56nKqq.dmg', 'InterviewCoder.dmg')}
+          onClick={() => handleDownload('http://47.96.89.141:8888/down/qmOt7x56nKqq.dmg', 'BUZZ.dmg')}
           className="group flex items-center gap-2 rounded-2xl border border-white/20 bg-white/10 px-6 py-3 text-sm font-light text-white backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:bg-white/20 hover:cursor-pointer"
         >
           <svg className="h-4 w-4 transition-transform group-hover:scale-110" fill="currentColor" viewBox="0 0 20 20">
@@ -72,7 +72,9 @@ export function DownloadSection() {
           macOS 版下载
         </button>
       </div>
-      <p className="text-xs font-light tracking-tight text-white/60">支持 Windows 10+ 和 macOS 12+ 系统</p>
+      <p className="text-xs font-light tracking-tight text-white/60">
+        支持 Windows 10+ 和 macOS 12+ 系统 · 免费版每日 3 次配额
+      </p>
     </div>
   );
 }

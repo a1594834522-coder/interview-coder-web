@@ -10,8 +10,8 @@ const DOWNLOAD_LINKS = {
 };
 
 const DOWNLOAD_FILENAMES = {
-  windows: 'InterviewCoder-Setup.exe',
-  macos: 'InterviewCoder.dmg',
+  windows: 'BUZZ-Setup.exe',
+  macos: 'BUZZ.dmg',
 };
 
 export function DemoShowcase() {
@@ -23,7 +23,7 @@ export function DemoShowcase() {
       return {
         url: DOWNLOAD_LINKS.macos,
         filename: DOWNLOAD_FILENAMES.macos,
-        buttonText: '立即体验 (macOS)',
+        buttonText: '免费试用 (macOS)',
       };
     }
 
@@ -31,7 +31,7 @@ export function DemoShowcase() {
     return {
       url: DOWNLOAD_LINKS.windows,
       filename: DOWNLOAD_FILENAMES.windows,
-      buttonText: '立即体验 (Windows)',
+      buttonText: '免费试用 (Windows)',
     };
   }, []);
 
@@ -51,11 +51,11 @@ export function DemoShowcase() {
   return (
     <div className="relative flex h-screen w-screen flex-col">
       <Hero
-        title="Interview Coder"
-        description={`专为在线考试设计的AI辅助工具
-提供实时题目解析、智能答题建议，助您在笔试中脱颖而出。`}
-        badgeText="AI 驱动"
-        badgeLabel="最新"
+        title="BUZZ"
+        description={`AI 驱动的智能辅助工具
+适用于在线考试、日常作业、技术面试、科学研究等多种场景。`}
+        badgeText="多场景应用 · 激活码制"
+        badgeLabel="专业版"
         ctaButtons={[
           {
             text: downloadInfo.buttonText,
@@ -65,11 +65,11 @@ export function DemoShowcase() {
           },
           { text: '查看功能', href: '/features' },
           {
-            text: '查看仓库',
-            href: 'https://github.com/a1594834522-coder/interview-coder/tree/v1.0.20',
+            text: '查看定价',
+            href: '/pricing',
           },
         ]}
-        microDetails={['实时解析', '智能建议', '策略优化']}
+        microDetails={['智能解析', '多场景适配', '本地运行']}
       />
       <DownloadSection />
     </div>
