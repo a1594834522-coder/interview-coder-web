@@ -1,6 +1,7 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { DownloadSection } from '@/components/download/DownloadSection';
 import { Hero } from '@/components/hero/Hero';
+import { ContactModal } from '@/components/contact/ContactModal';
 import { detectOS } from '@/lib/detectOS';
 
 // 下载链接配置
@@ -15,6 +16,8 @@ const DOWNLOAD_FILENAMES = {
 };
 
 export function DemoShowcase() {
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
   // 检测用户操作系统并生成对应的下载链接
   const downloadInfo = useMemo(() => {
     const os = detectOS();
@@ -68,10 +71,16 @@ export function DemoShowcase() {
             text: '查看定价',
             href: '/pricing',
           },
+          {
+            text: '联系我们',
+            href: '#contact',
+            onClick: () => setIsContactModalOpen(true),
+          },
         ]}
         microDetails={['智能解析', '多场景适配', '本地运行']}
       />
       <DownloadSection />
+      <ContactModal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)} />
     </div>
   );
 }
