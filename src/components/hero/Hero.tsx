@@ -8,6 +8,7 @@ export interface HeroCTA {
   text: string;
   href: string;
   primary?: boolean;
+  onClick?: () => void;
 }
 
 export interface HeroProps {
@@ -159,23 +160,41 @@ export function Hero({
         </p>
 
         <div ref={ctaRef} className="flex flex-wrap items-center gap-3 pt-2">
-          {ctaButtons.map((button) => {
+          {ctaButtons.map((button, index) => {
             const className = `rounded-2xl border border-white/10 px-5 py-3 text-sm font-light tracking-tight transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-white/30 ${
               button.primary
                 ? 'bg-white/10 text-white backdrop-blur-sm hover:bg-white/20'
                 : 'text-white/80 hover:bg-white/5'
             }`;
 
+            // 如果有 onClick 处理函数,使用 button 元素
+            if (button.onClick) {
+              return (
+                <button
+                  key={`${button.href}-${index}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    button.onClick?.();
+                  }}
+                  className={`${className} hover:cursor-pointer`}
+                >
+                  {button.text}
+                </button>
+              );
+            }
+
+            // 内部路由使用 Link 组件
             if (button.href.startsWith('/')) {
               return (
-                <Link key={button.href} to={button.href} className={className}>
+                <Link key={`${button.href}-${index}`} to={button.href} className={className}>
                   {button.text}
                 </Link>
               );
             }
 
+            // 外部链接使用 a 标签
             return (
-              <a key={button.href} href={button.href} className={className}>
+              <a key={`${button.href}-${index}`} href={button.href} className={className} target="_blank" rel="noopener noreferrer">
                 {button.text}
               </a>
             );
