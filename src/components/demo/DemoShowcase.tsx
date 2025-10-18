@@ -3,17 +3,7 @@ import { DownloadSection } from '@/components/download/DownloadSection';
 import { Hero } from '@/components/hero/Hero';
 import { ContactModal } from '@/components/contact/ContactModal';
 import { detectOS } from '@/lib/detectOS';
-
-// 下载链接配置
-const DOWNLOAD_LINKS = {
-  windows: 'http://47.96.89.141:8888/down/H3NntVlPEqJh.exe',
-  macos: 'http://47.96.89.141:8888/down/qmOt7x56nKqq.dmg',
-};
-
-const DOWNLOAD_FILENAMES = {
-  windows: 'BUZZ-Setup.exe',
-  macos: 'BUZZ.dmg',
-};
+import { DOWNLOAD_CONFIG } from '@/config/download';
 
 export function DemoShowcase() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
@@ -24,16 +14,14 @@ export function DemoShowcase() {
 
     if (os.type === 'macos') {
       return {
-        url: DOWNLOAD_LINKS.macos,
-        filename: DOWNLOAD_FILENAMES.macos,
+        ...DOWNLOAD_CONFIG.macos,
         buttonText: '免费试用 (macOS)',
       };
     }
 
     // 默认为 Windows (包括 Linux 和 unknown)
     return {
-      url: DOWNLOAD_LINKS.windows,
-      filename: DOWNLOAD_FILENAMES.windows,
+      ...DOWNLOAD_CONFIG.windows,
       buttonText: '免费试用 (Windows)',
     };
   }, []);

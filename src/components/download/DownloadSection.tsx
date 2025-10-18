@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { gsap, useGSAP } from '@/lib/gsap';
+import { DOWNLOAD_CONFIG } from '@/config/download';
 
 export function DownloadSection() {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -46,7 +47,7 @@ export function DownloadSection() {
     >
       <div className="flex gap-3">
         <button
-          onClick={() => handleDownload('http://47.96.89.141:8888/down/GsSdHcd8Ak5V.exe', 'BUZZ-Setup.exe')}
+          onClick={() => handleDownload(DOWNLOAD_CONFIG.windows.url, DOWNLOAD_CONFIG.windows.filename)}
           className="group flex items-center gap-2 rounded-2xl border border-white/20 bg-white/10 px-6 py-3 text-sm font-light text-white backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:bg-white/20 hover:cursor-pointer"
         >
           <svg className="h-4 w-4 transition-transform group-hover:scale-110" fill="currentColor" viewBox="0 0 20 20">
@@ -59,7 +60,7 @@ export function DownloadSection() {
           Windows 版下载
         </button>
         <button
-          onClick={() => handleDownload('http://47.96.89.141:8888/down/qmOt7x56nKqq.dmg', 'BUZZ.dmg')}
+          onClick={() => handleDownload(DOWNLOAD_CONFIG.macos.url, DOWNLOAD_CONFIG.macos.filename)}
           className="group flex items-center gap-2 rounded-2xl border border-white/20 bg-white/10 px-6 py-3 text-sm font-light text-white backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:bg-white/20 hover:cursor-pointer"
         >
           <svg className="h-4 w-4 transition-transform group-hover:scale-110" fill="currentColor" viewBox="0 0 20 20">
